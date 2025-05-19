@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
         Vector3 diraction = transform.forward * MovementInput.y + transform.right * MovementInput.x;
         diraction *= moveSpeed;
         diraction.y = rb.velocity.y;
+
+        rb.velocity = diraction;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -54,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started)
+        if (context.phase == InputActionPhase.Started && IsGround())
         {
             rb.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
         }
