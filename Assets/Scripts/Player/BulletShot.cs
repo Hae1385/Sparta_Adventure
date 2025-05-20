@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class BulletShot : MonoBehaviour
 {
-    
+    private void Start()
+    {
+        
+    }
 }
