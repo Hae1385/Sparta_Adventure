@@ -5,13 +5,15 @@ using UnityEngine;
 public class Spring : MonoBehaviour
 {
     public GameObject spring;
+    public float jumpForce = 500f;
 
     private void OnTriggerEnter(Collider other)
     {
         Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.AddForce(Vector3.up * 500f, ForceMode.Impulse);
+            rb.velocity= Vector3.zero;  //떨어지는 힘을 상쇄 
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); 
         }
     }
 

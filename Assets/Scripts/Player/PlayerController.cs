@@ -41,11 +41,6 @@ public class PlayerController : MonoBehaviour
         CameraLook();
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Trigger");
-    }
-
     #region Move
     private void Move()
     {
