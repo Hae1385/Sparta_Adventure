@@ -1226,10 +1226,10 @@ PrefabInstance:
       addedObject: {fileID: 1356993769}
     - targetCorrespondingSourceObject: {fileID: 3015481875272181996, guid: 302f9270c40ea514c921b423eea7347c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1297048646}
+      addedObject: {fileID: 1297048647}
     - targetCorrespondingSourceObject: {fileID: 3015481875272181996, guid: 302f9270c40ea514c921b423eea7347c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1297048647}
+      addedObject: {fileID: 1297048648}
   m_SourcePrefab: {fileID: 100100000, guid: 302f9270c40ea514c921b423eea7347c, type: 3}
 --- !u!1 &1042463108
 GameObject:
@@ -1415,20 +1415,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3015481875272181996, guid: 302f9270c40ea514c921b423eea7347c, type: 3}
   m_PrefabInstance: {fileID: 999560837}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1297048646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1297048642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6aa664d0cbd6008428a1d4007a9998d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spring: {fileID: 1297048642}
-  jumpForce: 100
 --- !u!114 &1297048647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1442,6 +1428,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 699f8784565cd1940bc4ccb5a372c124, type: 2}
+--- !u!64 &1297048648
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297048642}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1356993764 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1336161844798844245, guid: 302f9270c40ea514c921b423eea7347c, type: 3}
@@ -2267,7 +2275,7 @@ MonoBehaviour:
   jumpPower: 80
   groundLayer:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 183
   cameraSlot: {fileID: 624140137}
   minXLook: -85
   maxXLook: 85
@@ -2453,7 +2461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkRate: 0.05
-  maxCheckDistance: 5
+  maxCheckDistance: 3
   layerMask:
     serializedVersion: 2
     m_Bits: 128
