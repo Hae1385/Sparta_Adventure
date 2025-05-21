@@ -15,7 +15,8 @@ public enum ItemType
 public enum ConsumableType
 {
     Health,
-    Hunger
+    Hunger,
+    Duration
 }
 
 [Serializable]
@@ -23,6 +24,9 @@ public class ItemDataConsumable
 {
     public ConsumableType type;
     public float value;
+    public float duration;
+    public float durationHealth;
+    public float durationStamina;
 }
 
 [CreateAssetMenu(fileName = "Item", menuName = "New Item")]
@@ -33,6 +37,7 @@ public class ItemData : ScriptableObject
     public string description;
     public ItemType type;
     public Sprite icon;
+    public GameObject dropPrefab;
 
     [Header("Stacking")]
     public bool canStack;

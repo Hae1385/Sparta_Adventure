@@ -32,6 +32,8 @@ public class Interraction : MonoBehaviour
             Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
 
+            Debug.DrawRay(transform.position, transform.forward, Color.red);
+
             if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
             {
                 if (hit.collider.gameObject != curInteractGameObject)
@@ -54,16 +56,5 @@ public class Interraction : MonoBehaviour
     {
         prompText.gameObject.SetActive(true);
         prompText.text = curInteractable.GetInteractPrompt();
-    }
-
-    public void OnInteractInput(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Started && curInteractable != null)
-        {
-            curInteractable.OnInteract();
-            curInteractGameObject = null;
-            curInteractable = null;
-            prompText.gameObject.SetActive(false);
-        }
     }
 }

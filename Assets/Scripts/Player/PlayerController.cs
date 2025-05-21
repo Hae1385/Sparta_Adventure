@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,7 +19,9 @@ public class PlayerController : MonoBehaviour
     private float camXRotation;
     public float lookSensitivity;
     private Vector2 mouseDelta;
+    public bool canLook = true;
 
+    public Action inventory;
     private Rigidbody rb;
 
     private void Awake()
@@ -37,6 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (canLook)
         CameraLook();
     }
 
@@ -104,4 +108,25 @@ public class PlayerController : MonoBehaviour
         mouseDelta = context.ReadValue<Vector2>();
     }
     #endregion
+
+    #region Inventory
+
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Started)
+        {
+            inventory?.Invoke();
+            ToggleCursor();
+        }
+    }
+
+    void ToggleCursor()
+    {
+        bool toggle = Cursor.lockState == CursorLockMode.Locked;
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+        canLook = !toggle;
+    }
+
+    #endregion
+
 }
