@@ -167,8 +167,14 @@ public class Inventory : MonoBehaviour
         selectedItemName.text = selectedItem.displayName;
         selectedItemDescription.text = selectedItem.description;
 
+        Debug.Log(selectedItem.displayName);
+        Debug.Log(selectedItem.description);
+
         selectedStatName.text = string.Empty;
         selectedStatValue.text = string.Empty;
+
+        Debug.Log(selectedItem.description);
+        Debug.Log(selectedItem.displayName);
 
         for (int i = 0; i < selectedItem.consumables.Length; i++)
         {
@@ -191,10 +197,10 @@ public class Inventory : MonoBehaviour
                 switch (selectedItem.consumables[i].type)
                 {
                     case ConsumableType.Health:
-                        condition.Heal(selectedItem.consumables[i].value);
+                        condition.Heal(selectedItem.consumables[i].duration);
                         break;
                     case ConsumableType.Duration:
-                        //코루틴코드불러오기
+                        condition.StartAddCor(selectedItem.consumables[i].durationHealth, selectedItem.consumables[i].durationStamina);
                         break;
                 }
             }

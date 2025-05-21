@@ -17,16 +17,10 @@ public class PlayerCondition : MonoBehaviour, IDamagelbe
     private Coroutine coroutine;
     public float duration;
 
-    public event Action onTakeDamage;
     private void Update()
     {
         health.Add(health.passiveValue * Time.deltaTime);
         stamina.Add(stamina.passiveValue * Time.deltaTime);
-    }
-
-    private void FixedUpdate()
-    {
-        StartAddCor();
     }
 
     public void Heal(float amout)
@@ -47,7 +41,6 @@ public class PlayerCondition : MonoBehaviour, IDamagelbe
     public void TakePhysiclaDamage(int damage)
     {
         health.Subject(damage);
-        onTakeDamage?.Invoke();
     }
 
     public bool UseStamina(float amount)
@@ -69,11 +62,11 @@ public class PlayerCondition : MonoBehaviour, IDamagelbe
         }
     }
 
-    public void StartAddCor()
+    public void StartAddCor(float addHealth, float addStamina)
     {
         if (coroutine != null)
         {
-            coroutine = StartCoroutine(CoTimer(duration, duration));
+            coroutine = StartCoroutine(CoTimer(addHealth, addStamina));
         }
     }
 

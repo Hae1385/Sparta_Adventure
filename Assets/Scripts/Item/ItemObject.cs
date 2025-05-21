@@ -19,8 +19,21 @@ public class ItemObject : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
+        if (data.type == ItemType.UnItem)
+            return;
+
+        if (data.type == ItemType.Consumable)
+        {
+            Debug.Log("Consumable");
+            if (gameObject.tag == "DestroyConsumable")
+            {
+                Debug.Log("Destory");
+                Destroy(gameObject);
+            }
+        }
+
         CharacterManager.Instance.Player.itemData = data;
         CharacterManager.Instance.Player.addItem?.Invoke();
-        Destroy(gameObject);
+        
     }
 }
