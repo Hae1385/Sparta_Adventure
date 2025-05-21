@@ -14,6 +14,9 @@ public class PlayerCondition : MonoBehaviour, IDamagelbe
     Condition health { get { return uiCondition.health; } }
     Condition stamina { get { return uiCondition.health; } }
 
+    private Coroutine coroutine;
+    public float duration;
+
     public event Action onTakeDamage;
     private void Update()
     {
@@ -21,9 +24,19 @@ public class PlayerCondition : MonoBehaviour, IDamagelbe
         stamina.Add(stamina.passiveValue * Time.deltaTime);
     }
 
+    private void FixedUpdate()
+    {
+        StartAddCor();
+    }
+
     public void Heal(float amout)
     {
         health.Add(amout);
+    }
+
+    public void AddStamina(float amout)
+    {
+        stamina.Add(amout);
     }
 
     public void Die()
@@ -45,6 +58,23 @@ public class PlayerCondition : MonoBehaviour, IDamagelbe
         }
         stamina.Subject(amount);
         return true;
+    }
+    private IEnumerator CoTimer(float addHealth, float addStamina)
+    {
+        while (duration <= 0)
+        {
+            Heal(addHealth * Time.deltaTime);
+            AddStamina(addStamina * Time.deltaTime);
+            yield return null;
+        }
+    }
+
+    public void StartAddCor()
+    {
+        if (coroutine != null)
+        {
+            coroutine = StartCoroutine(CoTimer(duration, duration));
+        }
     }
 
 }
