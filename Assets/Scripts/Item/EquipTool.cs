@@ -9,10 +9,8 @@ public class EquipTool : Equip
     private bool attacking;
     public float attackDistance;
     public float useStamina;
-    public bool shot;
     public GameObject Bullet;
-    public Transform bulletPos;
-    public float firePower;
+    public BulletShot bulletShot;
 
     [Header("Resource Gathering")]
     public bool doesGatherResources;
@@ -28,6 +26,7 @@ public class EquipTool : Equip
     {
         animator = GetComponent<Animator>();
         camera = Camera.main;
+        bulletShot = GetComponent<BulletShot>();
     }
 
     public override void OnAttackInput()
@@ -53,11 +52,10 @@ public class EquipTool : Equip
         {
             if (CharacterManager.Instance.Player.condition.UseStamina(useStamina))
             {
-                shot = true;
+                
                 animator.SetTrigger("Attack");
-                GameObject bullet = Instantiate(Bullet, bulletPos.position, Quaternion.identity);
-                bullet.GetComponent<Rigidbody>().AddForce(bulletPos.forward * firePower);
-                Destroy(bullet, 5f);
+                if (bulletShot == null) {bulletShot = GetComponentInParent<BulletShot>();}
+                bulletShot.OnShotBullet();
                 Invoke("OnCanAttack", attackRate);
             }
         }
@@ -66,7 +64,6 @@ public class EquipTool : Equip
     void OnCanAttack()
     {
         attacking = false;
-        shot = false;
     }
 
     public void OnHit()
