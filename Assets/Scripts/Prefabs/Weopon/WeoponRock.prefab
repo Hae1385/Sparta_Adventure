@@ -132,6 +132,10 @@ MonoBehaviour:
   attackRate: 0.5
   attackDistance: 1
   useStamina: 20
+  shot: 0
+  Bullet: {fileID: 6159960680358780024, guid: cb09379e9d54b8848afa9aa87aae2ded, type: 3}
+  bulletPos: {fileID: 3519326654307850770}
+  firePower: 500
   doesGatherResources: 0
   doesDealDamage: 1
   damage: 10
