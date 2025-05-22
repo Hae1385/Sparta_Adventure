@@ -52,6 +52,11 @@ public class Inventory : MonoBehaviour
         ClearSelctedItemWindow();
     }
 
+    private void FixedUpdate()
+    {
+        UpdateUI();
+    }
+
     void ClearSelctedItemWindow()
     {
         selectedItemName.text = string.Empty;
@@ -168,14 +173,8 @@ public class Inventory : MonoBehaviour
         selectedItemName.text = selectedItem.displayName;
         selectedItemDescription.text = selectedItem.description;
 
-        Debug.Log(selectedItem.displayName);
-        Debug.Log(selectedItem.description);
-
         selectedStatName.text = string.Empty;
         selectedStatValue.text = string.Empty;
-
-        Debug.Log(selectedItem.description);
-        Debug.Log(selectedItem.displayName);
 
         for (int i = 0; i < selectedItem.consumables.Length; i++)
         {
@@ -201,7 +200,7 @@ public class Inventory : MonoBehaviour
                         condition.Heal(selectedItem.consumables[i].duration);
                         break;
                     case ConsumableType.Duration:
-                        condition.StartAddCor(selectedItem.consumables[i].durationHealth, selectedItem.consumables[i].durationStamina);
+                        condition.StartAddCor(selectedItem.consumables[i].durationHealth, selectedItem.consumables[i].durationStamina, selectedItem.consumables[i].duration);
                         break;
                 }
             }

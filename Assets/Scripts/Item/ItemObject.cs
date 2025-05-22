@@ -22,7 +22,7 @@ public class ItemObject : MonoBehaviour, IInteractable
         if (data.type == ItemType.UnItem)
             return;
 
-        if (data.type == ItemType.Consumable)
+        if (data.type == ItemType.Consumable || data.type == ItemType.Equipable)
         {
             Debug.Log("Consumable");
             if (gameObject.tag == "DestroyConsumable")
@@ -31,9 +31,8 @@ public class ItemObject : MonoBehaviour, IInteractable
                 Destroy(gameObject);
             }
         }
-
-        CharacterManager.Instance.Player.itemData = data;
-        CharacterManager.Instance.Player.addItem?.Invoke();
         
+            CharacterManager.Instance.Player.itemData = data;
+        CharacterManager.Instance.Player.addItem?.Invoke();
     }
 }

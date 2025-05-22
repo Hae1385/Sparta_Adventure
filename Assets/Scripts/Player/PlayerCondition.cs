@@ -12,7 +12,7 @@ public class PlayerCondition : MonoBehaviour, IDamagelbe
     public UICondition uiCondition;
 
     Condition health { get { return uiCondition.health; } }
-    Condition stamina { get { return uiCondition.health; } }
+    Condition stamina { get { return uiCondition.stamina; } }
 
     private Coroutine coroutine;
     public float duration;
@@ -40,7 +40,9 @@ public class PlayerCondition : MonoBehaviour, IDamagelbe
 
     public void TakePhysiclaDamage(int damage)
     {
+        Debug.Log("Player Is Damage");
         health.Subject(damage);
+        Debug.Log("Player Is Damage");
     }
 
     public bool UseStamina(float amount)
@@ -49,25 +51,32 @@ public class PlayerCondition : MonoBehaviour, IDamagelbe
         {
             return false;
         }
+        Debug.Log(amount);
         stamina.Subject(amount);
         return true;
     }
-    private IEnumerator CoTimer(float addHealth, float addStamina)
+    private IEnumerator CoTimer(float addHealth, float addStamina, float duration)
     {
-        while (duration <= 0)
+        while (0f < duration)
         {
             Heal(addHealth * Time.deltaTime);
             AddStamina(addStamina * Time.deltaTime);
+            duration -= Time.deltaTime;
             yield return null;
         }
     }
 
-    public void StartAddCor(float addHealth, float addStamina)
+    public void StartAddCor(float addHealth, float addStamina, float duration)
     {
+        Debug.Log("StartCor");
         if (coroutine != null)
         {
-            coroutine = StartCoroutine(CoTimer(addHealth, addStamina));
+            StopCoroutine(coroutine);
+            coroutine = null;
+            Debug.Log("StopCor");
         }
+        coroutine = StartCoroutine(CoTimer(addHealth, addStamina, duration));
+        Debug.Log("ActiveCor");
     }
 
 }

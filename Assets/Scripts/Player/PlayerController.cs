@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("Move")]
     public float moveSpeed;
     public float jumpPower;
+    public float dashSpeed;
     private Vector2 MovementInput;
     public LayerMask groundLayer;
 
@@ -23,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     public Action inventory;
     private Rigidbody rb;
-
+    private CharacterManager characterManager;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();

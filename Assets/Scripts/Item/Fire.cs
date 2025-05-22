@@ -1,18 +1,27 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int damage;
+
+    List<IDamagelbe> things = new List<IDamagelbe>();
+
+    void Damage()
     {
-        
+        things[0].TakePhysiclaDamage(damage);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        Debug.Log("Triggered");
+        if(other.TryGetComponent(out IDamagelbe damage))
+        {
+            Debug.Log("IsDamage");
+            things.Add(damage);
+            damage.TakePhysiclaDamage(this.damage);
+        }
     }
 }
