@@ -40,9 +40,7 @@ public class PlayerCondition : MonoBehaviour, IDamagelbe
 
     public void TakePhysiclaDamage(int damage)
     {
-        Debug.Log("Player Is Damage");
         health.Subject(damage);
-        Debug.Log("Player Is Damage");
     }
 
     public bool UseStamina(float amount)
@@ -68,15 +66,12 @@ public class PlayerCondition : MonoBehaviour, IDamagelbe
 
     public void StartAddCor(float addHealth, float addStamina, float duration)
     {
-        Debug.Log("StartCor");
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
             coroutine = null;
-            Debug.Log("StopCor");
         }
         coroutine = StartCoroutine(CoTimer(addHealth, addStamina, duration));
-        Debug.Log("ActiveCor");
     }
 
 }
