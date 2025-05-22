@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float jumpPower;
     public float dashSpeed;
+    public bool isDash;
     private Vector2 MovementInput;
     public LayerMask groundLayer;
 
@@ -25,9 +26,11 @@ public class PlayerController : MonoBehaviour
 
     public Action inventory;
     private Rigidbody rb;
-    private CharacterManager characterManager;
+    private PlayerCondition condition;
+    private Coroutine coroutine;
     private void Awake()
     {
+        condition = GetComponent<PlayerCondition>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -50,7 +53,12 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         Vector3 diraction = transform.forward * MovementInput.y + transform.right * MovementInput.x;
-        diraction *= moveSpeed;
+        
+        if(isDash)
+            diraction *= dashSpeed;
+        else
+            diraction *= moveSpeed;
+
         diraction.y = rb.velocity.y;
 
         rb.velocity = diraction;
@@ -66,6 +74,36 @@ public class PlayerController : MonoBehaviour
         {
             MovementInput = Vector2.zero;
         }
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            isDash = true;
+            StartAddCor(10);
+        }
+        else
+            isDash = false;
+    }
+    private IEnumerator CoTimer(float useStamina)
+    {
+        while (0f < useStamina)
+        {
+            if (isDash)
+            condition.UseStamina(useStamina*Time.deltaTime);
+
+            yield return null;
+        }
+    }
+    public void StartAddCor(float useStamina)
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
+        coroutine = StartCoroutine(CoTimer(useStamina));
     }
 
     public void OnJump(InputAction.CallbackContext context)
