@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887622364413389326}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.872932, y: -2.9645095, z: 0.5852919}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -109,8 +109,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3536818706579442248}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.872932, y: 4, z: 2}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.612, y: 0.91, z: 1.352}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -132,10 +132,10 @@ MonoBehaviour:
   attackRate: 0.5
   attackDistance: 1
   useStamina: 20
-  shot: 0
+  shot: 1
   Bullet: {fileID: 6159960680358780024, guid: cb09379e9d54b8848afa9aa87aae2ded, type: 3}
   bulletPos: {fileID: 3519326654307850770}
-  firePower: 500
+  firePower: 1000
   doesGatherResources: 0
   doesDealDamage: 1
   damage: 10

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EquipTool : Equip
@@ -44,6 +45,10 @@ public class EquipTool : Equip
 
     public override void OnShotInput()
     {
+        if (Bullet == null)
+            return;
+
+
         if (!attacking)
         {
             if (CharacterManager.Instance.Player.condition.UseStamina(useStamina))
