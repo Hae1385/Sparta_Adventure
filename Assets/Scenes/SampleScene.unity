@@ -441,6 +441,7 @@ MonoBehaviour:
   equipButton: {fileID: 733013690}
   unequipButton: {fileID: 276528322}
   dropButton: {fileID: 1521431462}
+  equipment: {fileID: 2011337950}
 --- !u!1001 &109892553
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5555,6 +5556,7 @@ MonoBehaviour:
   Bullet: {fileID: 6159960680358780024, guid: cb09379e9d54b8848afa9aa87aae2ded, type: 3}
   bulletPos: {fileID: 1189303792}
   firePower: 2000
+  inventory: {fileID: 100951560}
 --- !u!1 &2016885240
 GameObject:
   m_ObjectHideFlags: 0

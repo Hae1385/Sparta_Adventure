@@ -30,6 +30,8 @@ public class Inventory : MonoBehaviour
 
     int curEquipIndex;
 
+    public Equipment equipment;
+
     private void Start()
     {
         controller = CharacterManager.Instance.Player.controller;
@@ -161,6 +163,16 @@ public class Inventory : MonoBehaviour
     void ThrowItem(ItemData data)
     {
         Instantiate(data.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
+        equipment.UnEquip();
+    }
+
+    public void ThrowWeapon()
+    {
+        if (selectedItem.type == ItemType.Equipable)
+        {
+            RemoveSelectedItem();
+        }
+
     }
 
     public void SelectItem(int index)
@@ -220,6 +232,7 @@ public class Inventory : MonoBehaviour
 
         if (slots[selectedItemIndex].quantity <= 0)
         {
+            equipment.UnEquip();
             selectedItem = null;
             slots[selectedItemIndex].item = null;
             selectedItemIndex = -1;

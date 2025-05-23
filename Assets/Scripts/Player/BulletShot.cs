@@ -9,6 +9,8 @@ public class BulletShot : MonoBehaviour
     public float firePower;
 
     EquipTool equipTool;
+    
+    public Inventory inventory;
 
     private void Awake()
     {
@@ -16,8 +18,10 @@ public class BulletShot : MonoBehaviour
     }
     public void OnShotBullet()
     {
+        inventory.ThrowWeapon();
         GameObject bullet = Instantiate(Bullet, bulletPos.position, bulletPos.rotation);
         bullet.GetComponent<Rigidbody>().AddForce(bulletPos.forward * firePower);
         Destroy(bullet, 5f);
+
     }
 }
