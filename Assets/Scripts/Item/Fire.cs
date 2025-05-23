@@ -16,10 +16,8 @@ public class Fire : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Triggered");
         if(other.TryGetComponent(out IDamagelbe damage))
         {
-            Debug.Log("IsDamage");
             things.Add(damage);
             damage.TakePhysiclaDamage(this.damage);
         }

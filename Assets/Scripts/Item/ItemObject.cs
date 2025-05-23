@@ -24,10 +24,8 @@ public class ItemObject : MonoBehaviour, IInteractable
 
         if (data.type == ItemType.Consumable || data.type == ItemType.Equipable)
         {
-            Debug.Log("Consumable");
             if (gameObject.tag == "DestroyConsumable")
             {
-                Debug.Log("Destory");
                 Destroy(gameObject);
             }
         }

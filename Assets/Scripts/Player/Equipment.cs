@@ -28,8 +28,6 @@ public class Equipment : MonoBehaviour
     {
         if (curEquip != null)
         {
-
-            Debug.Log("UnEquip");
             Destroy(curEquip.gameObject);
             curEquip = null;
         }
