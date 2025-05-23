@@ -44,19 +44,18 @@ public class EquipTool : Equip
 
     public override void OnShotInput()
     {
-        if (Bullet == null)
+        if (Bullet == null)  //불릿 프리팹이 없으면 예외처리
             return;
 
 
-        if (!attacking)
+        if (!attacking) 
         {
             if (CharacterManager.Instance.Player.condition.UseStamina(useStamina))
             {
-                
                 animator.SetTrigger("Attack");
                 if (bulletShot == null) {bulletShot = GetComponentInParent<BulletShot>();}
-                bulletShot.OnShotBullet();
-                Invoke("OnCanAttack", attackRate);
+                bulletShot.OnShotBullet();  //총알이 발사되도록 설정
+                Invoke("OnCanAttack", attackRate);  //공격시 발사가 안되도록 동일 딜레이 적용
             }
         }
     }

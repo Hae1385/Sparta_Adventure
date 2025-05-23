@@ -160,13 +160,13 @@ public class Inventory : MonoBehaviour
         return null;
     }
 
-    void ThrowItem(ItemData data)
+    void ThrowItem(ItemData data)  //아이템버리기
     {
         Instantiate(data.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
         equipment.UnEquip();
     }
 
-    public void ThrowWeapon()
+    public void ThrowWeapon()  //투척용 무기 사용시 아이템 소모
     {
         if (selectedItem.type == ItemType.Equipable)
         {
@@ -190,7 +190,7 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < selectedItem.consumables.Length; i++)
         {
-            if (selectedItem.consumables [i].type == ConsumableType.Duration)
+            if (selectedItem.consumables [i].type == ConsumableType.Duration) //소모품의 타입이 지속인 경우 출력문자변경
             {
                 selectedStatName.text += "Duration \nHealth \nStamina" ;
                 selectedStatValue.text += "\n" + selectedItem.consumables[i].durationHealth.ToString() + "\n" +selectedItem.consumables[i].durationStamina.ToString();
@@ -219,9 +219,9 @@ public class Inventory : MonoBehaviour
                     case ConsumableType.Health:
                         condition.Heal(selectedItem.consumables[i].duration);
                         break;
-                    case ConsumableType.Duration:
+                    case ConsumableType.Duration:  //소모품 타입이 지속일경우 Coroutine이 실행되도록 하기위한 코드
                         condition.StartAddCor(selectedItem.consumables[i].durationHealth, selectedItem.consumables[i].durationStamina, selectedItem.consumables[i].duration);
-                        break;
+                        break; 
                 }
             }
             RemoveSelectedItem();

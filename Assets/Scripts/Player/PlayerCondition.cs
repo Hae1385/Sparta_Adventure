@@ -56,18 +56,18 @@ public class PlayerCondition : MonoBehaviour, IDamagelbe
     {
         while (0f < duration)
         {
-            Heal(addHealth * Time.deltaTime);
-            AddStamina(addStamina * Time.deltaTime);
-            duration -= Time.deltaTime;
+            Heal(addHealth * Time.deltaTime);  //입력된 값만큼 초당 체력회복
+            AddStamina(addStamina * Time.deltaTime);  //입력된 값만큼 초당 스테미너 회복
+            duration -= Time.deltaTime;  //지속 시간을 입력받기 위한 코드
             yield return null;
         }
     }
 
-    public void StartAddCor(float addHealth, float addStamina, float duration)
+    public void StartAddCor(float addHealth, float addStamina, float duration)  //아이템 타입이 Duraition이면 실행하기 위한 코드
     {
         if (coroutine != null)
         {
-            StopCoroutine(coroutine);
+            StopCoroutine(coroutine);  //해당 Couroutine이 실행중이면 종료
             coroutine = null;
         }
         coroutine = StartCoroutine(CoTimer(addHealth, addStamina, duration));

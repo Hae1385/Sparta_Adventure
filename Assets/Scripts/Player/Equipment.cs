@@ -41,7 +41,7 @@ public class Equipment : MonoBehaviour
         }
     }
 
-    public void OnShotInput(InputAction.CallbackContext context)
+    public void OnShotInput(InputAction.CallbackContext context)  //원거리 공격
     {
         if (context.phase == InputActionPhase.Performed && curEquip != null && controller.canLook)
         {

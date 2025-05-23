@@ -12,9 +12,8 @@ public class Spring : MonoBehaviour
         Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            //rb.velocity = Vector3.zero;  //떨어지는 힘을 상쇄
-            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);  //떨어지는 힘을 상쇄시키고
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);      //jumpForce만큼 위로 밀어내기
         }
     }
 }

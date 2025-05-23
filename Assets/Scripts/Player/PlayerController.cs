@@ -8,10 +8,10 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Move")]
-    public float moveSpeed;
-    public float jumpPower;
-    public float dashSpeed;
-    public bool isDash;
+    public float moveSpeed;  //이동속도
+    public float jumpPower;  //점프력
+    public float dashSpeed;  //대쉬속도
+    public bool isDash;      //대쉬여부판단
     private Vector2 MovementInput;
     public LayerMask groundLayer;
 
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     private PlayerCondition condition;
     private Coroutine coroutine;
 
-    public GameObject howToPlay;
+    public GameObject howToPlay;  
     private void Awake()
     {
         condition = GetComponent<PlayerCondition>();
@@ -79,10 +79,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed) //대쉬키를 누르면
         {
             isDash = true;
-            StartAddCor(10);
+            StartAddCor(10);  //스테미너 소모량
         }
         else
             isDash = false;
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
     {
         while (0f < useStamina)
         {
-            if (isDash)
+            if (isDash)  //만약에 대쉬중이라면 스테미너를 스테미너 소모량만큼 초당 소모 
             condition.UseStamina(useStamina*Time.deltaTime);
 
             yield return null;
@@ -99,12 +99,12 @@ public class PlayerController : MonoBehaviour
     }
     public void StartAddCor(float useStamina)
     {
-        if (coroutine != null)
+        if (coroutine != null)  //Coroutine이 실행중이면 중단
         {
             StopCoroutine(coroutine);
             coroutine = null;
         }
-        coroutine = StartCoroutine(CoTimer(useStamina));
+        coroutine = StartCoroutine(CoTimer(useStamina));  //Corutine 실행
     }
 
     public void OnJump(InputAction.CallbackContext context)
