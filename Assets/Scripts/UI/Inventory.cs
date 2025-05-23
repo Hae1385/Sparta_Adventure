@@ -190,8 +190,16 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < selectedItem.consumables.Length; i++)
         {
-            selectedStatName.text += selectedItem.consumables[i].type.ToString() + "\n";
-            selectedStatValue.text += selectedItem.consumables[i].value.ToString() + "\n";
+            if (selectedItem.consumables [i].type == ConsumableType.Duration)
+            {
+                selectedStatName.text += "Duration \nHealth \nStamina" ;
+                selectedStatValue.text += "\n" + selectedItem.consumables[i].durationHealth.ToString() + "\n" +selectedItem.consumables[i].durationStamina.ToString();
+            }
+            else
+            {
+                selectedStatName.text += selectedItem.consumables[i].type.ToString() + "\n";
+                selectedStatValue.text += selectedItem.consumables[i].value.ToString() + "\n";
+            }
         }
 
         useButton.SetActive(selectedItem.type == ItemType.Consumable);
