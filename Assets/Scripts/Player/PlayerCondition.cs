@@ -49,7 +49,6 @@ public class PlayerCondition : MonoBehaviour, IDamagelbe
         {
             return false;
         }
-        Debug.Log(amount);
         stamina.Subject(amount);
         return true;
     }
