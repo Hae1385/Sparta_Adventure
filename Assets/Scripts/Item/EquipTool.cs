@@ -52,6 +52,7 @@ public class EquipTool : Equip
         {
             if (CharacterManager.Instance.Player.condition.UseStamina(useStamina))
             {
+                attacking= true;
                 animator.SetTrigger("Attack");
                 if (bulletShot == null) {bulletShot = GetComponentInParent<BulletShot>();}
                 bulletShot.OnShotBullet();  //총알이 발사되도록 설정

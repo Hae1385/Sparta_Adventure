@@ -18,10 +18,10 @@ public class BulletShot : MonoBehaviour
     }
     public void OnShotBullet()
     {
-        inventory.ThrowWeapon();
-        GameObject bullet = Instantiate(Bullet, bulletPos.position, bulletPos.rotation);
-        bullet.GetComponent<Rigidbody>().AddForce(bulletPos.forward * firePower);
-        Destroy(bullet, 5f);
+        inventory.ThrowWeapon();  //인벤토리에 공격시 소모되도록 조치
+        GameObject bullet = Instantiate(Bullet, bulletPos.position, bulletPos.rotation); //총알이 발사될 위치 불러오기
+        bullet.GetComponent<Rigidbody>().AddForce(bulletPos.forward * firePower);  //총알을 firePower만큼 앞으로 발사
+        Destroy(bullet, 5f); //5초뒤 파괴되게
 
     }
 }
