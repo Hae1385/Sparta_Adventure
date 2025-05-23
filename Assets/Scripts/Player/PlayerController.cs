@@ -28,15 +28,16 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private PlayerCondition condition;
     private Coroutine coroutine;
+
+    public GameObject howToPlay;
     private void Awake()
     {
         condition = GetComponent<PlayerCondition>();
         rb = GetComponent<Rigidbody>();
     }
-
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
     private void FixedUpdate()
     {
@@ -160,7 +161,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ToggleCursor()
+    public void ToggleCursor()
     {
         bool toggle = Cursor.lockState == CursorLockMode.Locked;
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
@@ -168,5 +169,4 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion
-
 }
